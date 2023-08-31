@@ -22,10 +22,17 @@ const Home = () => {
 };
 
 const loadData = async (store) => {
-  console.log("execcc");
+  const result = await store.dispatch(
+    apiSlice.endpoints.getMentors.initiate({
+      skip: 0,
+      take: 10,
+      searchText: "",
+    })
+  );
 
-  //await Promise.all(store.dispatch(apiSlice.util.getRunningQueriesThunk()));
-  //console.log("Data fetched");
+  await Promise.all(store.dispatch(apiSlice.util.getRunningQueriesThunk()));
+
+  console.log("Loading function: " + JSON.stringify(result));
 };
 
 export { loadData };

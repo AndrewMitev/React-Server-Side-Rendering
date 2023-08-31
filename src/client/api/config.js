@@ -1,7 +1,9 @@
 export const apiConfig = {
     api: {
       baseUrl: 'https://localhost:7134',//process.env.REACT_APP_BASE_URL,
-      url: 'https://localhost:7134/api',//process.env.REACT_APP_API_URL,
+      url: 'https://mentorsko-api-development.azurewebsites.net/api',
+      // 'https://localhost:7134/api',
+      // process.env.REACT_APP_API_URL,
       aiUrl: ''//process.env.REACT_APP_AI_API_URL,
     },
   };

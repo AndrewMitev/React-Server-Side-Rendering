@@ -13,15 +13,6 @@ app.use(express.static('public'));
 app.get('*', async (request, response) => {
     const store = createServerStore();
 
-    const result = await store.dispatch(apiSlice.endpoints.getMentors.initiate({
-      skip: 0,
-      take: 10,
-      searchText: "",
-    }));
-
-    await Promise.all(store.dispatch(apiSlice.util.getRunningQueriesThunk()));
-    console.log(result);
-
     response.send(renderer(request, store));
 });
 
