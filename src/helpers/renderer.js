@@ -14,14 +14,14 @@ const routes = [
     },
   ];
 
-export default (request, store) => {
+export default async (request, store) => {
   //let { dataRoutes } = createStaticHandler(routes);
   //let router = createStaticRouter(dataRoutes, {});
   const content = renderToString(
     <Provider store={store}>
         <StaticRouter location={request.path}>
             <Routes>
-                <Route path="/" element={<Home />} loader={loadData(store)} />
+                <Route path="/" element={<Home />} loader={await loadData(store)} />
             </Routes>
         </StaticRouter>
     </Provider>

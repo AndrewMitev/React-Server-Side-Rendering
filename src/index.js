@@ -13,7 +13,7 @@ app.use(express.static('public'));
 app.get('*', async (request, response) => {
     const store = createServerStore();
 
-    response.send(renderer(request, store));
+    response.send(await renderer(request, store));
 });
 
 app.listen(3000, () => {

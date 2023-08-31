@@ -4,6 +4,7 @@ import { apiSlice } from "../api/apiSlice";
 
 const Home = () => {
   const isLoading = true;
+  console.log("Componenttt");
   return (
     <div>
       <ul>
