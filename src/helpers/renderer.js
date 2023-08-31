@@ -2,7 +2,6 @@ import React from "react";
 import { renderToString } from "react-dom/server";
 import { createStaticHandler, createStaticRouter, StaticRouter, StaticRouterProvider } from "react-router-dom/server";
 import { Provider } from "react-redux";
-import { renderRoutes } from "react-router-config";
 //import Routes from '../client/Routes.jsx';
 import { Routes, Route } from "react-router-dom";
 import Home, { loadData } from "../client/components/Home.jsx";

@@ -6,6 +6,7 @@ import { apiConfig, apiPaths, aiApiPaths, httpMethods, searchParams, apiTags } f
 import { profileTypes } from '../infrastructure/constants';
 import { TOKEN_KEY } from '../infrastructure/constants';
 import { getFormData } from '../infrastructure/getFormData';
+import https from 'https';
 
 const { api } = apiConfig;
 
@@ -30,14 +31,19 @@ const createApi2 = buildCreateApi(
   reactHooksModule({ unstable__sideEffectsInRender: true })
 )
 
+const agent = new https.Agent({
+  rejectUnauthorized: false, // Disables SSL verification
+});
+
 // Define our single API slice object
-export const apiSlice = createApi({
+export const apiSlice = createApi2({
   // The cache reducer expects to be added at `state.api` (already default - this is optional)
   reducerPath: API_REDUCER_PATH,
   // All of our requests will have URLs starting with '/api'
   // fetchBaseQuery - small wrapper around native fetch
   baseQuery: fetchBaseQuery({
     baseUrl: api.url + '/',
+    httpAgent: agent,
     prepareHeaders: (headers) => {
       //const token = window.localStorage.getItem(TOKEN_KEY);
 
@@ -87,7 +93,7 @@ export const apiSlice = createApi({
         url.searchParams.append('skip', skip);
         url.searchParams.append('take', take);
         url.searchParams.append('searchText', searchText);
-
+        console.log(url.toString());
         return url.toString();
       },
       providesTags: [apiTags.mentors],

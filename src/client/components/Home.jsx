@@ -3,19 +3,7 @@ import { useGetMentorsQuery } from "../api/apiSlice";
 import { apiSlice } from "../api/apiSlice";
 
 const Home = () => {
-  const { data, currentData, error, isLoading, isSuccess } = useGetMentorsQuery(
-    {
-      skip: 0,
-      take: 10,
-      searchText: "",
-    }
-  );
-
-  console.log("In component");
-  console.log(data);
-  console.log(error);
-  console.log(isSuccess);
-
+  const isLoading = true;
   return (
     <div>
       <ul>
