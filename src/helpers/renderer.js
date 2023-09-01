@@ -1,27 +1,20 @@
 import React from "react";
 import { renderToString } from "react-dom/server";
-import { createStaticHandler, createStaticRouter, StaticRouter, StaticRouterProvider } from "react-router-dom/server";
+import { StaticRouter} from "react-router-dom/server";
 import { Provider } from "react-redux";
-//import Routes from '../client/Routes.jsx';
 import { Routes, Route } from "react-router-dom";
-import Home, { loadData } from "../client/components/Home.jsx";
+import serialize from "serialize-javascript";
 
-const routes = [
-    {
-      path: "/",
-      loader: loadData,
-      Component: Home,
-    },
-  ];
+import HomePage, {loadHomeData} from "../client/pages/HomePage.jsx";
+import TestPage from "../client/pages/TestPage.jsx";
 
 export default async (request, store) => {
-  //let { dataRoutes } = createStaticHandler(routes);
-  //let router = createStaticRouter(dataRoutes, {});
   const content = renderToString(
     <Provider store={store}>
         <StaticRouter location={request.path}>
             <Routes>
-                <Route path="/" element={<Home />} loader={await loadData(store)} />
+                <Route path="/" element={<HomePage />} loader={await loadHomeData(store)} />
+                <Route path="/test" element={<TestPage />} />
             </Routes>
         </StaticRouter>
     </Provider>
@@ -32,6 +25,9 @@ export default async (request, store) => {
             <head></head>
             <body>
                 <div id="root">${content}</div>
+                <script>
+                 window.INITIAL_STATE = ${serialize(store.getState())}
+                </script>
                 <script src='bundle.js'></script>
             </body>
         </html>

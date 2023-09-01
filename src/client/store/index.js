@@ -9,6 +9,7 @@ import { rootReducer } from './reducers/rootReducer';
 // Once it is created we need to make it available to React components by passing Provider in index.js
 export const store = configureStore({
   reducer: rootReducer,
+  preloadedState: window.INITIAL_STATE,
   // Middlewares
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`

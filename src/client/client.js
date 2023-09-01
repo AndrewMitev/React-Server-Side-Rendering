@@ -4,16 +4,17 @@ import { hydrateRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import DefinedRoutes from './Routes.jsx';
 import { store } from './store/index.js';
-import Home from './components/Home.jsx';
+import HomePage from './pages/HomePage.jsx';
+import TestPage from './pages/TestPage.jsx';
 
 hydrateRoot(
 document.getElementById('root'),
 <Provider store={store}>
     <BrowserRouter>
         <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/test" element={<TestPage />} />
         </Routes>
     </BrowserRouter>
 </Provider>

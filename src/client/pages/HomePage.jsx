@@ -2,7 +2,7 @@ import React from "react";
 import { useGetMentorsQuery } from "../api/apiSlice";
 import { apiSlice } from "../api/apiSlice";
 
-const Home = () => {
+const HomePage = () => {
   const { data, isLoading } = useGetMentorsQuery({
     skip: 0,
     take: 10,
@@ -25,7 +25,7 @@ const Home = () => {
   );
 };
 
-const loadData = async (store) => {
+const loadHomeData = async (store) => {
   const result = await store.dispatch(
     apiSlice.endpoints.getMentors.initiate({
       skip: 0,
@@ -37,6 +37,6 @@ const loadData = async (store) => {
   await Promise.all(store.dispatch(apiSlice.util.getRunningQueriesThunk()));
 };
 
-export { loadData };
+export { loadHomeData };
 
-export default Home;
+export default HomePage;
