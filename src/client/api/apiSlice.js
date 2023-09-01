@@ -7,6 +7,7 @@ import { profileTypes } from '../infrastructure/constants';
 import { TOKEN_KEY } from '../infrastructure/constants';
 import { getFormData } from '../infrastructure/getFormData';
 import https from 'https';
+import fetch from 'isomorphic-unfetch';
 
 const { api } = apiConfig;
 
@@ -44,6 +45,7 @@ export const apiSlice = createApi2({
   baseQuery: fetchBaseQuery({
     baseUrl: api.url + '/',
     httpAgent: agent,
+    fetchFn: fetch,
     prepareHeaders: (headers) => {
       //const token = window.localStorage.getItem(TOKEN_KEY);
 
@@ -93,7 +95,7 @@ export const apiSlice = createApi2({
         url.searchParams.append('skip', skip);
         url.searchParams.append('take', take);
         url.searchParams.append('searchText', searchText);
-        console.log(url.toString());
+
         return url.toString();
       },
       providesTags: [apiTags.mentors],

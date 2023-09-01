@@ -4,7 +4,7 @@ import renderer  from './helpers/renderer';
 import createServerStore from './helpers/createServerStore';
 import { apiSlice } from './client/api/apiSlice';
 import https from 'https';
-global.fetch = require('node-fetch');
+//global.fetch = require('node-fetch');
 
 const app = express();
 

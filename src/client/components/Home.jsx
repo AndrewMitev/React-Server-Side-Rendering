@@ -3,12 +3,15 @@ import { useGetMentorsQuery } from "../api/apiSlice";
 import { apiSlice } from "../api/apiSlice";
 
 const Home = () => {
-  const isLoading = true;
-  console.log("Componenttt");
+  const { data, isLoading } = useGetMentorsQuery({
+    skip: 0,
+    take: 10,
+    searchText: "",
+  });
+
   return (
     <div>
       <ul>
-        <li>{isLoading ? "True" : "False"}</li>
         {!isLoading &&
           data &&
           data.mentors &&
@@ -32,8 +35,6 @@ const loadData = async (store) => {
   );
 
   await Promise.all(store.dispatch(apiSlice.util.getRunningQueriesThunk()));
-
-  console.log("Loading function: " + JSON.stringify(result));
 };
 
 export { loadData };
